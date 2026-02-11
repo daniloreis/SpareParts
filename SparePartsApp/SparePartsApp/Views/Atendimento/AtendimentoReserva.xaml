@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:SparePartsApp.Components"
+             x:Class="SparePartsApp.Views.Atendimento.AtendimentoReserva"
+             Title="ATENDIMENTO">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" Padding="20,0,20,0" >
+            <Label Text="Número:" VerticalOptions="Start" HorizontalOptions="Center" />
+            <components:NumericEntry x:Name="txtNumeroReserva" Keyboard="Numeric" VerticalOptions="Start" />
+            <Button x:Name="btnAvancar" Text="AVANÇAR"  Clicked="BtnAvancar_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

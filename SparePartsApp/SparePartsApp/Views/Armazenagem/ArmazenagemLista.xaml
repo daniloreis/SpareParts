@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SparePartsApp.Views.ArmazenagemLista"             
+             Title="ARMAZENAGEM">
+    <ContentPage.Content>
+        <StackLayout >
+            <Label Text="MATERIAIS PENDENTES DE ARMAZENAMENTO" HorizontalTextAlignment="Center" />
+            <Grid Margin="1" BackgroundColor="Color.White" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="40" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="MATERIAL" FontAttributes="Bold"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="QTD" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                <Label Grid.Row="0" Grid.Column="2" Text="UM" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+            </Grid>
+            <ListView x:Name="MaterialsListView" ItemSelected="OnMaterialSelected" Refreshing="MaterialsListView_Refreshing" RowHeight="75" SeparatorColor="Black">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="45" />
+                                    <RowDefinition Height="25" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition Width="40" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding Nome}"  VerticalOptions="CenterAndExpand" LineBreakMode="WordWrap" HorizontalOptions="StartAndExpand"/>
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding QuantidadeString, StringFormat='{0:N3}'}"  VerticalOptions="Center" HorizontalOptions="Center"/>
+                                <Label Grid.Row="0" Grid.Column="2" Text="{Binding UnidadeMedida}" VerticalOptions="Center" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
+
+                                <Label Grid.Row="1" Grid.Column="0" Text="{Binding CodMaterial}"  FontSize="Small" HorizontalOptions="StartAndExpand"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

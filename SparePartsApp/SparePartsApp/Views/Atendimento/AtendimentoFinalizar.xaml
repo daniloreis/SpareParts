@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SparePartsApp.Views.Atendimento.AtendimentoFinalizar"             
+             Title="ATENDIMENTO"  
+             x:Name="page">
+    <ContentPage.Content>
+        <StackLayout Padding="5,0,5,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="30" /> 
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="CODIGO" FontAttributes="Bold"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="LOTE" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                <Label Grid.Row="0" Grid.Column="2" Text="RESERVADO" x:Name="lblReserva" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+                <Label Grid.Row="0" Grid.Column="3" Text="RETIRAR"  x:Name="lblRetirar"  HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                <Label Grid.Row="0" Grid.Column="4" Text="UM" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+            </Grid>
+            <ListView x:Name="MaterialsListView" ItemSelected="MaterialsListView_ItemSelected" SeparatorColor="Black">               
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition Width="30" />
+                                </Grid.ColumnDefinitions>
+                                <Label  Grid.Row="0" Grid.Column="0" Text="{Binding CodMaterial}" HorizontalOptions="Start" VerticalOptions="Center"  LineBreakMode="WordWrap"/>
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding NumeroLote}"  FontSize="Small" HorizontalOptions="Center"  LineBreakMode="NoWrap"/>
+                                <Label Grid.Row="0" Grid.Column="2"  Text="{Binding QuantidadeString}"  VerticalOptions="Center"  HorizontalTextAlignment="Center"  IsVisible="{Binding Source={x:Reference page}, Path=PorReserva}"/>
+                                <Label  Grid.Row="0" Grid.Column="3" Text="{Binding QuantidadeRetirada }" VerticalOptions="Center" HorizontalTextAlignment="Center" />
+                                <Label  Grid.Row="0" Grid.Column="4" Text="{Binding UnidadeMedida}" VerticalOptions="Center" HorizontalTextAlignment="Center"  />
+
+                                <Label  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Text="{Binding Nome}" HorizontalOptions="StartAndExpand" VerticalOptions="Center"  LineBreakMode="WordWrap" TextColor="Black"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button x:Name="btnFinalizar" Text="FINALIZAR" Clicked="btnFinalizar_Clicked" VerticalOptions="End"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

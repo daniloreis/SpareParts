@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SparePartsApp.Views.RecebimentoDetalhe"
+             Title="{Binding CodMaterial}"
+             xmlns:components="clr-namespace:SparePartsApp.Components">
+    <ContentPage.Content>
+        <StackLayout Spacing="0" >
+            <Grid HeightRequest="50">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label  Grid.Row="0" Grid.Column="0" Text="LOCAL DE DESCARGA:" FontSize="Small" VerticalTextAlignment="Center" FontAttributes="Bold"/>
+                <components:BarCodeEntry Grid.Row="0" Grid.Column="1" x:Name="txtPosicaoDeposito" Text="{Binding PosicaoDeposito}"  VerticalOptions="Center" MaxLength="20"/>
+            </Grid>
+            <Grid HeightRequest="50">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="75" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0"  Text="MATERIAL:" FontAttributes="Bold"/>
+                <Label Grid.Row="0" Grid.Column="1"  x:Name="lblNome"  HorizontalOptions="StartAndExpand" Text="{Binding Nome}" LineBreakMode="WordWrap"/>
+            </Grid>
+            <ScrollView Orientation="Vertical" VerticalOptions="StartAndExpand" HeightRequest="120">
+                <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+                    <Label x:Name="lblDescricao" VerticalOptions="Center" VerticalTextAlignment="Center" Text="{Binding Descricao}" />
+                </StackLayout>
+            </ScrollView>
+            
+            <Label Grid.Row="0" Grid.Column="3"  Text="EXIGE FISPQ" IsVisible="{Binding ExigeFispq}" FontSize="Small"  TextColor="Red" FontAttributes="Bold" HorizontalOptions="Start" LineBreakMode="NoWrap" VerticalOptions="Start"/>
+            <Grid HeightRequest="55">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="QTD:" VerticalTextAlignment="Center" FontAttributes="Bold"  />
+
+                <components:NumericEntry Grid.Row="0" Grid.Column="1" Text="{Binding QuantidadeEstoqueFisico }" Keyboard="Numeric" x:Name="txtQuantidade" FontSize="Small"  
+                       VerticalOptions="Center" HorizontalTextAlignment="Center"  IsEnabled="{Binding NaoExigeValidade}"  />
+                
+                <Label Grid.Row="0" Grid.Column="2" Text="{Binding UnidadeMedida}"  VerticalTextAlignment="Center"   HorizontalTextAlignment="Center"/>
+
+                <Button Grid.Row="0" Grid.Column="3" Text="[+] ATIVOS" x:Name="btnAtivos" FontSize="Small"  Clicked="btnAtivos_Clicked" TextColor="Green" VerticalOptions="Center" IsVisible="{Binding RequerPlacaAtivo}"/>
+
+                <Button Grid.Row="0" Grid.Column="4" Text="[+] LOTES" x:Name="btnLotes" FontSize="Small"  Clicked="btnLotes_Clicked" TextColor="Blue" VerticalOptions="Center"/>
+
+                <Button  Grid.Row="0" Grid.Column="5" x:Name="btnFoto" BackgroundColor="White" Image="{Binding ImagemBotaoFoto}"  Clicked="btnFoto_Clicked" />
+            </Grid>
+            
+            <Grid HeightRequest="60">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="60" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0" Grid.Column="0" x:Name="btnVoltar" Text="◄"  FontSize="Large"  Clicked="btnVoltar_Clicked" HorizontalOptions="Start"/>
+                <Picker  Grid.Row="0" Grid.Column="1"  x:Name="pkrAtual" ItemDisplayBinding="{Binding CodMaterial}"   HorizontalOptions="Center" IsVisible="False"/>
+                <Button Grid.Row="0" Grid.Column="1"   x:Name="btnConcluir" Text="CONCLUIR" Clicked="btnConcluir_Clicked" HorizontalOptions="CenterAndExpand" WidthRequest="200"/>
+                <Button Grid.Row="0" Grid.Column="2" x:Name="btnAvancar" Text="►" FontSize="Large" Clicked="btnAvancar_Clicked" HorizontalOptions="End"/>
+            </Grid>            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

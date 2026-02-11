@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SparePartsApp.Views.Atendimento.AtendimentoCompraDireta"
+             xmlns:Components="clr-namespace:SparePartsApp.Components" 
+             Title="ATENDIMENTO">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Components:BarCodeEntry x:Name="txtQRCode" Placeholder="Ano/Documento/Item" Completed="txtQRCode_Completed" HorizontalOptions="StartAndExpand" WidthRequest="300"/>
+                <Button x:Name="btnAdd" Text="Add" Clicked="BtnAdicionar_Clicked" HorizontalOptions="End" />
+            </StackLayout>
+            <Label Text="Adicione abaixo a lista de materiais a ser atendida:" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
+            <ListView x:Name="MaterialsListView" RowHeight="60"  SeparatorColor="Black">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40" />
+                                    <ColumnDefinition Width="70" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="70" />
+                                    <ColumnDefinition Width="40" />
+                                    <ColumnDefinition Width="40" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="COD:"   FontAttributes="Bold"  TextColor="Black"  />
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding CodMaterial}" />
+                                <Label Grid.Row="0" Grid.Column="2" Text="QTD:" FontAttributes="Bold"  TextColor="Black"/>
+                                <Label Grid.Row="0" Grid.Column="3" Text="{Binding QuantidadeString  }"  HorizontalTextAlignment="Start"/>
+                                <Label Grid.Row="0" Grid.Column="4" Text="{Binding UnidadeMedida}" HorizontalOptions="Start"/>
+                                <Button Grid.Row="0" Grid.Column="5" Grid.RowSpan="2" Text="X" x:Name="btnRemover" FontSize="Small" BackgroundColor="RosyBrown" Clicked="btnRemover_Clicked" CommandParameter="{Binding NumeroBC}"   />
+
+                                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Text="{Binding Nome}" FontSize="Small" LineBreakMode="WordWrap" HorizontalOptions="StartAndExpand" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button x:Name="btnFinalizar" Text="FINALIZAR" Clicked="btnFinalizar_Clicked" VerticalOptions="End"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

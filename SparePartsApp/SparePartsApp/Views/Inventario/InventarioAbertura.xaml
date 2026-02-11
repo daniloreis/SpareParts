@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SparePartsApp.Views.InventarioAbertura"
+             xmlns:components="clr-namespace:SparePartsApp.Components" 
+             Title="INVENTÁRIO">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" Padding="20" >
+            <Label  Text="NÚMERO DO DOCUMENTO:" VerticalOptions="Center" FontAttributes="Bold"/>
+            <components:NumericEntry  x:Name="txtDocumento" Keyboard="Numeric" VerticalOptions="Center" Completed="txtDocumento_Completed" TextChanged="txtDocumento_TextChanged"/>
+          
+            <Button x:Name="btnAbrir" Text="ABRIR LISTA" Clicked="btnAbrir_Clicked" VerticalOptions="Center"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

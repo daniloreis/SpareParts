@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SparePartsApp.Views.InventarioLista"
+             Title="INVENTÁRIO" xmlns:components="clr-namespace:SparePartsApp.Components">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="COD/LOTE"  FontAttributes="Bold" HorizontalOptions="Start"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="END/DEP" FontAttributes="Bold" HorizontalOptions="Center" LineBreakMode="NoWrap"/>
+                <Label Grid.Row="0" Grid.Column="2" Text="QTD/UNID" FontAttributes="Bold" HorizontalOptions="Center"/>
+            </Grid>
+            <ListView x:Name="MaterialsListView" ItemsSource="{Binding Materiais}" RowHeight="100" ItemSelected="MaterialsListView_ItemSelected"  SeparatorColor="Black">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding CodMaterial}"  VerticalOptions="Center" HorizontalOptions="Start" FontSize="Small" />
+
+                                <components:BarCodeEntry Grid.Row="0" Grid.Column="1" VerticalOptions="Center"  TextChanged="BarCodeEntry_TextChanged" FontSize="Small" Focused="BarCodeEntry_Focused"  
+                                         Placeholder="{Binding PosicaoDeposito}" HorizontalTextAlignment="Center" />
+
+                                <components:NumericEntry Grid.Row="0" Grid.Column="2"  x:Name="txtQuantidade" WidthRequest="80"  HorizontalOptions="Center"  Keyboard="Numeric" 
+                                       FontSize="Small" Text="{Binding Quantidade, Mode=TwoWay}" TextChanged="TxtQuantidade_TextChanged"  IsEnabled="False" BackgroundColor="LightGray" HorizontalTextAlignment="Center" />
+
+                                <Label Grid.Row="1" Grid.Column="0" Text="{Binding NumeroLote}"  VerticalOptions="Center" HorizontalOptions="Start" FontSize="Small" />
+
+                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding Deposito}" VerticalOptions="Center"  HorizontalOptions="Center" FontSize="Small" />
+
+                                <Label Grid.Row="1" Grid.Column="2" Text="{Binding UnidadeMedida}" VerticalOptions="Center" HorizontalOptions="Center"  FontSize="Small"/>
+
+                                <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Nome}"  HorizontalOptions="Start" LineBreakMode="WordWrap" FontSize="Small" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button x:Name="btnFinalizar" Text="FINALIZAR" Clicked="btnFinalizar_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

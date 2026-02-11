@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SparePartsApp.Views.MaterialDetalhe"
+             xmlns:components="clr-namespace:SparePartsApp.Components" 
+             Title="CONSULTAR NO SAP" >
+    <ContentPage.Content>
+        <StackLayout>
+            <components:NumericEntry x:Name="txtCodigo"  VerticalOptions="Center" Completed="txtCodigo_Completed"  Keyboard="Numeric" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="CÓDIGO:" VerticalOptions="Center"  FontAttributes="Bold"/>
+                <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" x:Name="lblCodMaterial" Text="{Binding CodMaterial}" FontSize="Small"   VerticalOptions="Center"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Text="MATERIAL:" VerticalOptions="Center"  FontAttributes="Bold"/>
+                <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="lblMaterial" Text="{Binding Nome}" FontSize="Small"  VerticalOptions="Center"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Text="UMB:" VerticalOptions="Center"  FontAttributes="Bold"/>
+                <Label Grid.Row="2" Grid.Column="1"  x:Name="lblUnidade" Text="{Binding UnidadeMedida}"  VerticalOptions="Center" HorizontalOptions="Start" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

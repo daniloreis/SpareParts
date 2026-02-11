@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SparePartsApp.Views.Atendimento.AtendimentoListaLote"
+             xmlns:components="clr-namespace:SparePartsApp.Components"
+            Title="ATENDIMENTO">
+    <ContentPage.Content>
+        <StackLayout  Padding="5,0,5,0">           
+            <ListView x:Name="MaterialsListView"  ItemSelected="MaterialsListView_ItemSelected"  RowHeight="120" SeparatorColor="Black">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="90" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="COD:" FontAttributes="Bold"   TextColor="Black"/>
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding CodMaterial}"  />
+                                <Label Grid.Row="0" Grid.Column="2" Text="DISPONÍVEL:" FontAttributes="Bold"   TextColor="Black"/>
+                                <Label Grid.Row="0" Grid.Column="3" Text="{Binding QuantidadeEstoqueSAPString }"  />
+                                <Label Grid.Row="0" Grid.Column="3" Text="{Binding UnidadeMedida}" HorizontalOptions="End"/>
+                                
+                                <Label Grid.Row="1" Grid.Column="0" Text="DEP:" FontAttributes="Bold"  TextColor="Black"/>
+                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding Deposito }" />
+                                <Label Grid.Row="1" Grid.Column="2" Text="ENDEREÇO:" FontAttributes="Bold"  TextColor="Black"/>
+                                <Label Grid.Row="1" Grid.Column="3" Text="{Binding PosicaoDeposito }"  />
+
+                                <Label Grid.Row="2" Grid.Column="0" Text="LOTE:" FontAttributes="Bold"  TextColor="Black" IsVisible="{Binding TemLote}"/>
+                                <Label Grid.Row="2" Grid.Column="1" Text="{Binding NumeroLote }"  IsVisible="{Binding TemLote}"/>
+                                <Label Grid.Row="2" Grid.Column="2" Text="VENCIMENTO:" FontAttributes="Bold"  TextColor="Black" IsVisible="{Binding TemValidade}"/>
+                                <Label Grid.Row="2" Grid.Column="3" Text="{Binding DiasVencimento}"   IsVisible="{Binding TemValidade}"/>
+                                
+                                <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Nome}" LineBreakMode="WordWrap" VerticalOptions="Center"/>                                
+                                <StackLayout  Grid.Row="3" Grid.Column="3"  Padding="0" >
+                                  <components:CheckBox IsChecked="{Binding Selecionado}" Type="Check" HorizontalOptions="End"/>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button x:Name="btnAvancar" Text="AVANÇAR" Clicked="btnAvancar_Clicked" VerticalOptions="End"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

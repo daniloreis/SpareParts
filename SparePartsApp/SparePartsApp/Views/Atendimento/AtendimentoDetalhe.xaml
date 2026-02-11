@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SparePartsApp.Views.Atendimento.AtendimentoDetalhe"    
+             xmlns:components="clr-namespace:SparePartsApp.Components" 
+             Title="ATENDIMENTO" >
+    <ContentPage.Content>
+        <StackLayout Spacing="0" >
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="75" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="CÓDIGO:" FontAttributes="Bold"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="{Binding CodMaterial}" />
+                
+                <Label Grid.Row="1" Grid.Column="0" Text="MATERIAL:" FontAttributes="Bold"/>
+                <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="StartAndExpand" Text="{Binding Nome}" LineBreakMode="WordWrap"/>
+
+                <Label  Grid.Row="2" Grid.Column="0" Text="DEPÓSITO:" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+                <Picker Grid.Row="2" Grid.Column="1" x:Name="pkrDeposito"  VerticalOptions="Center" ItemsSource="{Binding Depositos}" 
+                        ItemDisplayBinding="{Binding Exibir}" SelectedIndexChanged="pkrDeposito_SelectedIndexChanged"  TextColor="Black" />
+            </Grid>
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="75" />
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="75" />
+                    <ColumnDefinition Width="90" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="1" Grid.Column="0" Text="ENDEREÇO:" FontAttributes="Bold" VerticalOptions="Center"/>
+                <components:BarCodeEntry Grid.Row="1" Grid.Column="1" Placeholder="{Binding PosicaoDeposito}" x:Name="txtEndereco" TextChanged="Entry_TextChanged" 
+                                         Text="{Binding PosicaoBipada}" />
+                <Label Grid.Row="1" Grid.Column="2"  x:Name="lblTxtValidade" Text="VALIDADE:" FontAttributes="Bold" IsVisible="{Binding Validade.HasValue}" VerticalOptions="Center"/>
+                <Label Grid.Row="1" Grid.Column="3" x:Name="lblValidade"  Text="{Binding Validade}" VerticalOptions="Center"/>
+            </Grid>             
+            <Grid  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="90" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="30" />
+                </Grid.ColumnDefinitions>                
+                <Label Grid.Row="0" Grid.Column="0" Text="QTD SAP:" FontAttributes="Bold" VerticalOptions="Center"/>
+                <Label Grid.Row="0" Grid.Column="1" x:Name="lblQtdeSAP" Text="{Binding QuantidadeEstoqueSAPString }" HorizontalOptions="Start"  VerticalOptions="Center"/>
+                <Label Grid.Row="0" Grid.Column="2" x:Name="lblTxtReservada" Text="RESERVADA:" FontAttributes="Bold" VerticalOptions="Center"/>
+                <Label Grid.Row="0" Grid.Column="3" x:Name="lblReservada" Text="{Binding QuantidadeString }"   VerticalOptions="Center" HorizontalOptions="Start" />
+                <Label Grid.Row="0" Grid.Column="4" Text="{Binding UnidadeMedida}" VerticalOptions="Center" TextColor="Black"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Text="QTD FÍSICO:" FontAttributes="Bold" VerticalOptions="Center" />
+                <components:NumericEntry Grid.Row="1" Grid.Column="1" Text="{Binding QuantidadeEstoqueFisico}" x:Name="txtQuantidade"  HorizontalTextAlignment="Center" VerticalOptions="Center"  Keyboard="Numeric" />
+                <Label Grid.Row="1" Grid.Column="2" Text="RETIRAR:" x:Name="lblRetirar" FontAttributes="Bold" VerticalOptions="Center"/>
+                <components:NumericEntry Grid.Row="1" Grid.Column="3" Text="{Binding QuantidadeRetirada}" x:Name="txtQuantidadeRetirada"   HorizontalTextAlignment="Center" VerticalOptions="Center"  Keyboard="Numeric" />
+                <Label Grid.Row="1" Grid.Column="4" Text="{Binding UnidadeMedida}" VerticalOptions="Center" TextColor="Black" />
+            </Grid>
+            <Grid   >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="60" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0" Grid.Column="0" x:Name="btnVoltar" Text="◄"  FontSize="Large"  Clicked="btnVoltar_Clicked" HorizontalOptions="Start" VerticalOptions="Center"/>
+                <Button Grid.Row="0" Grid.Column="1"  x:Name="btnConcluir" Text="FINALIZAR" Clicked="btnConcluir_Clicked" VerticalOptions="Center"  WidthRequest="200"/>
+                <Button Grid.Row="0" Grid.Column="2" x:Name="btnAvancar" Text="►" FontSize="Large" Clicked="btnAvancar_Clicked" HorizontalOptions="End" VerticalOptions="Center"/>
+            </Grid>            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

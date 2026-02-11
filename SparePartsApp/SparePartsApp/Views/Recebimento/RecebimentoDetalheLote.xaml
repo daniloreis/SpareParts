@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SparePartsApp.Views.RecebimentoDetalheLote"              
+             xmlns:components="clr-namespace:SparePartsApp.Components" 
+             Title="{Binding CodMaterial}" >
+    <ContentPage.Content>
+        <AbsoluteLayout >
+            <StackLayout>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="120" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Text="LOTE:" VerticalTextAlignment="Center"/>
+                    <Entry Grid.Row="0" Grid.Column="1" x:Name="txtLote" FontSize="Small"  Keyboard="Default"  TextChanged="txtLote_TextChanged"  Completed="txtLote_Completed"/>
+                    <Label Grid.Row="0" Grid.Column="2" x:Name="lblValidade" Text="VALID.:" VerticalTextAlignment="Center"/>
+                    <DatePicker Grid.Row="0" Grid.Column="3" x:Name="dtpValidade" TextColor="Transparent" VerticalOptions="CenterAndExpand" Format="dd/MM/yyyy" PropertyChanged="dtpValidade_PropertyChanged" />
+
+                    <Label Grid.Row="1" Grid.Column="0" Text="QTD:" VerticalTextAlignment="Center" FontSize="Small" HorizontalTextAlignment="Center" />
+                    <components:NumericEntry Grid.Row="1" Grid.Column="1" x:Name="txtQuantidade" Text=""  Keyboard="Numeric"  FontSize="Small" VerticalOptions="Center"
+                           Completed="txtQuantidade_Completed"  />
+
+                    <Label Grid.Row="1" Grid.Column="2" Text="{Binding UnidadeMedida}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
+                    <Button Grid.Row="1" Grid.Column="3" x:Name="btnInlcuir" Text="ADICIONAR" FontSize="Small" Clicked="btnIncluir_Clicked"  HeightRequest="35"/>
+                </Grid>
+                <ListView x:Name="LotesListView"  SeparatorColor="Black">
+                    <ListView.Header>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="40" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Text="LOTE" FontSize="Small"/>
+                            <Label Grid.Row="0" Grid.Column="1" Text="VALIDADE" FontSize="Small"/>
+                            <Label Grid.Row="0" Grid.Column="2" Text="QTD" FontSize="Small"/>
+                            <Label Grid.Row="0" Grid.Column="3" Text="UM" FontSize="Small"/>
+                            <Label Grid.Row="0" Grid.Column="4" Text="REM?" FontSize="Small"/>
+                        </Grid>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="35" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="80" />
+                                        <ColumnDefinition Width="60" />
+                                        <ColumnDefinition Width="40" />
+                                        <ColumnDefinition Width="40" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label  Grid.Row="0" Grid.Column="0" Text="{Binding NumeroLote}" LineBreakMode="WordWrap" FontSize="Small" HorizontalOptions="StartAndExpand" />
+                                    <Label  Grid.Row="0" Grid.Column="1" Text="{Binding Validade, StringFormat='{0:dd/MM/yyyy}'}" LineBreakMode="NoWrap" FontSize="Small" HorizontalOptions="StartAndExpand" />
+                                    <Label  Grid.Row="0" Grid.Column="2" Text="{Binding Quantidade }" LineBreakMode="NoWrap" FontSize="Small" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                                    <Label  Grid.Row="0" Grid.Column="3" Text="{Binding UnidadeMedida}" LineBreakMode="NoWrap" FontSize="Small"  HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                                    <Button Grid.Row="0" Grid.Column="4"  Text="X" x:Name="btnRemover" FontSize="Small" BackgroundColor="RosyBrown" Clicked="btnRemover_Clicked" CommandParameter="{Binding NumeroLote}"   />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

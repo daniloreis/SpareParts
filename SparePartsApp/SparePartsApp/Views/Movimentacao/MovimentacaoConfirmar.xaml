@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SparePartsApp.Views.MovimentacaoConfirmar"  
+             xmlns:components="clr-namespace:SparePartsApp.Components"
+             Title="MOVIMENTAÇÃO" >
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="CÓDIGO:" VerticalOptions="Center"  FontAttributes="Bold"/>
+                <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" x:Name="lblCodMaterial" Text="{Binding CodMaterial}" FontSize="Small"   VerticalOptions="Center"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Text="MATERIAL:" VerticalOptions="Center"  FontAttributes="Bold"/>
+                <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="lblMaterial" Text="{Binding Nome}" FontSize="Small"  VerticalOptions="Center"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Text="QUANTIDADE:" VerticalOptions="Center"  FontAttributes="Bold"/>
+                <Label Grid.Row="2" Grid.Column="1" x:Name="lblQuantidade" Text="{Binding QuantidadeString}" FontSize="Small"   VerticalOptions="Center" HorizontalOptions="Start"/>
+                <Label Grid.Row="2" Grid.Column="1"  x:Name="lblUnidade" Text="{Binding UnidadeMedida}"  VerticalOptions="Center" HorizontalOptions="Center" />
+
+                <Label Grid.Row="3" Grid.Column="0" Text="DESTINO:" VerticalOptions="Center"  FontAttributes="Bold"/>
+                <components:BarCodeEntry Grid.Row="3" Grid.Column="1" x:Name="txtDestino"  VerticalOptions="Center" TextChanged="txtDestino_TextChanged" Completed="txtDestino_Completed" />
+            </Grid>
+            <Button x:Name="btnConfirmar" Text="CONFIRMAR" Clicked="btnConfirmar_Clicked" VerticalOptions="End"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SparePartsApp.Views.MovimentacaoAbrir"
+             xmlns:components="clr-namespace:SparePartsApp.Components"
+             Title="MOVIMENTAÇÃO">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="ORIGEM:"  VerticalTextAlignment="Center" VerticalOptions="Center" FontAttributes="Bold"/>
+                <components:BarCodeEntry Grid.Row="0" Grid.Column="1" x:Name="txtOrigem"  VerticalOptions="Center" TextChanged="txtOrigem_TextChanged" />
+            </Grid>
+            <Label Text="SELECIONE ABAIXO O MATERIAL A MOVIMENTAR:" HorizontalOptions="Center" BackgroundColor="White"/>
+            <ListView x:Name="MaterialsListView" ItemSelected="OnMaterialSelected"  SeparatorColor="Black" RowHeight="75">
+                <ListView.Header>
+                    <Grid HeightRequest="35">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="30" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Text="MATERIAL" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                        <Label Grid.Row="0" Grid.Column="1" Text="QTD" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                        <Label Grid.Row="0" Grid.Column="2" Text="UN" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                        <Label Grid.Row="0" Grid.Column="3" Text="DEP" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                    </Grid>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="45" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="30" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding CodMaterial}"  FontSize="Small" HorizontalOptions="StartAndExpand"/>
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding QuantidadeString}" VerticalOptions="Start" HorizontalTextAlignment="Center"  />
+                                <Label Grid.Row="0" Grid.Column="2" Text="{Binding UnidadeMedida}"  VerticalOptions="Start"  HorizontalTextAlignment="Center" />
+                                <Label Grid.Row="0" Grid.Column="3" Text="{Binding Deposito}"  VerticalOptions="Start"  HorizontalTextAlignment="Center" />
+
+                                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Nome}" VerticalOptions="Center"  HorizontalOptions="StartAndExpand" LineBreakMode="WordWrap" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+

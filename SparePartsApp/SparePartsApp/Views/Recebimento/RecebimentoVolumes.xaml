@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SparePartsApp.Views.RecebimentoVolumes"
+xmlns:components="clr-namespace:SparePartsApp.Components"
+		Title="RECEBIMENTO" >
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid HeightRequest="290">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0"   Text="Nº DA LISTA:" VerticalTextAlignment="Center" VerticalOptions="Center"/>
+                <components:NumericEntry Grid.Row="0" Grid.Column="1"  x:Name="txtListaRecebimento"  Keyboard="Numeric"  VerticalOptions="Center" Completed="txtListaRecebimento_Completed" />
+                <Button  Grid.Row="0" Grid.Column="2" x:Name="btnOk" Text="OK" Clicked="BtnOk_Clicked" HorizontalOptions="End"/>
+
+                <Label Grid.Row="1" Grid.Column="0"   Text="FORNECEDOR:"   VerticalTextAlignment="Center" VerticalOptions="Center"/>
+                <Label Grid.Row="1" Grid.Column="1"   x:Name="lblFornecedor" Text=""  LineBreakMode="WordWrap" VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand" />
+
+                <Label Grid.Row="2" Grid.Column="0"  Text="NOTA FISCAL:" VerticalTextAlignment="Center"  VerticalOptions="Center"/>
+                <Label Grid.Row="2" Grid.Column="1" x:Name="lblNfe" Text=""  VerticalTextAlignment="Center" VerticalOptions="Center"/>
+
+                <Label Grid.Row="3" Grid.Column="0"  Text="Nº DE VOLUMES:"   VerticalTextAlignment="Center" VerticalOptions="Center"/>
+                <components:NumericEntry Grid.Row="3" Grid.Column="1" x:Name="txtVolumes" Text=""  HorizontalOptions="Start"  WidthRequest="50"/>
+                <Button  Grid.Row="3" Grid.Column="2" x:Name="btnImprimirVolumes" Text="IMPRIMIR" Clicked="btnImprimirVolumes_Clicked" HorizontalOptions="Start"/>
+               
+                <Label Grid.Row="4" Grid.Column="0" Text="LOCAL DESCARGA:" VerticalTextAlignment="Center"  VerticalOptions="Center"/>
+                <components:BarCodeEntry Grid.Row="4" Grid.Column="1" x:Name="txtPosicaoDeposito"  VerticalOptions="Center" MaxLength="20"/>
+            </Grid>
+            <Button x:Name="btnValidarVolumes" Text="AVANÇAR" Clicked="btnValidarVolumes_Clicked" VerticalOptions="End"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

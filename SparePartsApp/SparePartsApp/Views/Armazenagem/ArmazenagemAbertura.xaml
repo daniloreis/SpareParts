@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SparePartsApp.Views.ArmazenagemAbertura"
+             xmlns:components="clr-namespace:SparePartsApp.Components" 
+             Title="ARMAZENAGEM">
+
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" Padding="20" >
+            <Label Text="Informe o BC do material:" VerticalOptions="Start" HorizontalOptions="Center"/>
+                <components:BarCodeEntry  x:Name="txtCodMaterial" VerticalOptions="Start" Completed="txtCodMaterial_Completed" Placeholder="Ano/Documento/Item"/>
+                <Button x:Name="btnOK"  Text="OK"  Clicked="btnOK_Clicked" VerticalOptions="Start" />                
+            </StackLayout>  
+    </ContentPage.Content>
+</ContentPage>

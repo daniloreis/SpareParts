@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SparePartsApp.Views.Login" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" Padding="20,0,20,0" >
+            <Button x:Name="btnAtualizar" FontSize="Micro" Clicked="btnAtualizar_Clicked" BackgroundColor="White"/>
+            <Image Source="@drawable/icon.png" VerticalOptions="Center" HorizontalOptions="Center" />
+            <Label>Usuário:</Label>
+            <Entry x:Name="txtUsuario"  />
+            <Label>Senha:</Label>
+            <Entry x:Name="txtSenha"  IsPassword="True" Keyboard="Default" Completed="txtSenha_Completed"/>
+            <Button x:Name="btnEntrar" Text="Entrar" Clicked="btnEntrar_Clicked"/>
+            <Picker x:Name="pkrServidor" ItemDisplayBinding="{Binding Item1}"   HorizontalOptions="Center" WidthRequest="48" SelectedIndexChanged="PkrServidor_SelectedIndexChanged" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

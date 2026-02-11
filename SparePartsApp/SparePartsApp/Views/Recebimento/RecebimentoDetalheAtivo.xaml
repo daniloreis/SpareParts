@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SparePartsApp.Views.RecebimentoDetalheAtivo"
+              Title="RECEBIMENTO"             
+             x:Name="BrowseRecebimentoDetalheAtivo"             
+             xmlns:components="clr-namespace:SparePartsApp.Components"  >
+    <ContentPage.Content>
+        <StackLayout >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="ITEM" FontAttributes="Bold"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="ATIVO" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+            </Grid>
+            <ListView x:Name="MaterialsListView" RowHeight="50"  SeparatorColor="Black" ItemsSource="{Binding Ativos}"  >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label  Grid.Row="0" Grid.Column="0" Text="{Binding Sequencia}" Margin="5"  FontSize="Small" HorizontalOptions="StartAndExpand" VerticalOptions="Center" x:Name="lblSequencia" />
+
+                                <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Placa}" FontSize="Small" Keyboard="Numeric" VerticalOptions="Center" HorizontalTextAlignment="Center" Unfocused="Entry_Unfocused"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button x:Name="btnConcluir" Text="CONCLUIR" Clicked="BtnConcluir_Clicked" VerticalOptions="End"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

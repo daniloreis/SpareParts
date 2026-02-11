@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:SparePartsApp.Components"
+             x:Class="SparePartsApp.Views.Geral.ConsultaBC"
+             Title="CONSULTAR BC" >
+    <ContentPage.Content>
+        <StackLayout >
+            <StackLayout Orientation="Horizontal">
+                <Entry  x:Name="txtQRCode" Completed="txtQRCode_Completed" Placeholder="Ano/Documento/Item" WidthRequest="300"/>
+                <Button Text="OK"  Clicked="Button_Clicked" WidthRequest="50"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="IMPRIMIR ETIQUETA" x:Name="btnImprimir"  Clicked="btnImprimir_Clicked" WidthRequest="200"/>
+                <components:NumericEntry Keyboard="Numeric" Grid.Row="3" Grid.Column="1" x:Name="txtVolumes" Text="{Binding QuantidadeImpressao, Mode=TwoWay}" Placeholder="QTD" HorizontalOptions="Start"  WidthRequest="50" HorizontalTextAlignment="Center" />
+            </StackLayout>
+            <ScrollView>
+                <StackLayout Spacing="0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="130" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Text="DT.ENTRADA:" FontAttributes="Bold"/>
+                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding DataEntrada, StringFormat='{0:dd/MM/yyyy}'}"/>
+
+                        <Label Grid.Row="1" Grid.Column="0" Text="NR:"  FontAttributes="Bold"/>
+                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding NumeroDocumento}" HorizontalOptions="Start"/>
+                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding NumeroItem}" HorizontalOptions="Center"/>
+
+                        <Label Grid.Row="2" Grid.Column="0" Text="PC:"  FontAttributes="Bold"/>
+                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding NumeroPedido}"/>
+                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding NumeroPedidoItem}" HorizontalOptions="Center"/>
+
+                        <Label Grid.Row="3" Grid.Column="0" Text="NT.REMESSA:"  FontAttributes="Bold"/>
+                        <Label Grid.Row="3" Grid.Column="1" Text="{Binding NumeroNota}"/>
+
+                        <Label Grid.Row="4" Grid.Column="0" Text="COD MAT:"  FontAttributes="Bold"/>
+                        <Label Grid.Row="4" Grid.Column="1" Text="{Binding CodMaterial}"  />
+
+                        <Label Grid.Row="5" Grid.Column="0" Text="MATERIAL:" FontAttributes="Bold"/>
+                        <Label Grid.Row="5" Grid.Column="1" Text="{Binding Nome}" LineBreakMode="WordWrap"/>
+
+                        <Label Grid.Row="6" Grid.Column="0" Text="CENTRO:" FontAttributes="Bold" />
+                        <Label Grid.Row="6" Grid.Column="1" Text="{Binding Centro}"/>
+
+                        <Label Grid.Row="7" Grid.Column="0" Text="DEP. ENTRADA:" FontAttributes="Bold"/>
+                        <Label Grid.Row="7" Grid.Column="1" Text="{Binding DepositoEtiqueta}"/>
+
+                        <Label Grid.Row="8" Grid.Column="0" Text="DEP. PADRÃO:" FontAttributes="Bold"/>
+                        <Label Grid.Row="8" Grid.Column="1" Text="{Binding DepositoDestinoEtiqueta}"/>
+
+                        <Label Grid.Row="9" Grid.Column="0" Text="END. PADRÃO:" FontAttributes="Bold"/>
+                        <Label Grid.Row="9" Grid.Column="1" Text="{Binding PosicaoDeposito}"/>
+
+                        <Label Grid.Row="10" Grid.Column="0" Text="LOTE:" FontAttributes="Bold"/>
+                        <Label Grid.Row="10" Grid.Column="1" Text="{Binding NumeroLote}"/>
+
+                        <Label Grid.Row="11" Grid.Column="0" Text="VALIDADE:" FontAttributes="Bold"/>
+                        <Label Grid.Row="11" Grid.Column="1" Text="{Binding Validade}"/>
+
+                        <Label Grid.Row="12" Grid.Column="0" Text="CD.ESTOQUE:" FontAttributes="Bold"/>
+                        <Label Grid.Row="12" Grid.Column="1" Text="{Binding CondicaoArmazenagem}"/>
+
+                        <Label Grid.Row="13" Grid.Column="0" Text="CD.TEMPERATURA:" FontAttributes="Bold"/>
+                        <Label Grid.Row="13" Grid.Column="1" Text="{Binding CondicaoTemperatura}"/>
+
+                        <Label Grid.Row="14" Grid.Column="0" Text="FORNECEDOR:" FontAttributes="Bold"/>
+                        <Label Grid.Row="14" Grid.Column="1" Text="{Binding Fornecedor}"/>
+
+                        <Label Grid.Row="15" Grid.Column="0" Text="QTDE VERIFICADA:" FontAttributes="Bold"/>
+                        <Label Grid.Row="15" Grid.Column="1" Text="{Binding QuantidadeString}"/>
+                        <Label Grid.Row="15" Grid.Column="1" Text="{Binding UnidadeMedida}" HorizontalOptions="Center"/>
+
+                        <Label Grid.Row="16" Grid.Column="0" Text="OPERADOR:" FontAttributes="Bold"/>
+                        <Label Grid.Row="16" Grid.Column="1" Text="{Binding Usuario}"/>
+
+                        <Label Grid.Row="17" Grid.Column="0" Text="TP MOV:" FontAttributes="Bold"/>
+                        <Label Grid.Row="17" Grid.Column="1" Text="{Binding TipoMovimento}"/>
+
+                        <Label Grid.Row="18" Grid.Column="0" Text="PT. DESCARGA:" FontAttributes="Bold"/>
+                        <Label Grid.Row="18" Grid.Column="1" Text="{Binding PosicaoDepositoOrigem}"/>
+
+                        <Label Grid.Row="19" Grid.Column="0" Text="ORDEM:" FontAttributes="Bold"/>
+                        <Label Grid.Row="19" Grid.Column="1" Text="{Binding Ordem}"/>
+
+                        <Label Grid.Row="20" Grid.Column="0" Text="REVISÃO:" FontAttributes="Bold"/>
+                        <Label Grid.Row="20" Grid.Column="1" Text="{Binding RevisaoOM}"/>
+
+                        <Label Grid.Row="21" Grid.Column="0" Text="RECEBEDOR:" FontAttributes="Bold"/>
+                        <Label Grid.Row="21" Grid.Column="1" Text="{Binding UsuarioAtendido}"/>
+                    </Grid>
+                    <Label Text="DESCRIÇÃO:" FontAttributes="Bold"/>
+                    <Label Text="{Binding Descricao}" LineBreakMode="WordWrap"/>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SparePartsApp.Views.Geral.ConsultaMaterial" Title="CONSULTAR MATERIAL">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="." Clicked="Nova_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+          <StackLayout VerticalOptions="Center" Padding="20" >                
+            <Button x:Name="txtSap" Text="CONSULTAR POR CÓDIGO"  Clicked="txtSap_Clicked" />
+            <Label x:Name="lblOU" Text="OU" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="Large" FontAttributes="Bold" TextColor="Black" />
+            <Button x:Name="txtBC" Text="CONSULTAR POR BC" Clicked="txtBC_Clicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

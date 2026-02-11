@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SparePartsApp.Views.Principal" >
+    <ContentPage.Content>
+        <StackLayout Spacing="-2" >
+            <Button x:Name="RECEBIMENTO"  Text="RECEBIMENTO"   HeightRequest="60" Image="drawable/recebimento.png" Clicked="RECEBIMENTO_Clicked"  />
+            <Button x:Name="ARMAZENAGEM"  Text="ARMAZENAGEM"  HeightRequest="60" Image="drawable/armazenagem.png" Clicked="ARMAZENAGEM_Clicked"  />
+            <Button x:Name="MOVIMENTACAO" Text="MOVIMENTAÇÃO" HeightRequest="60" Image="drawable/movimentacao.png" Clicked="MOVIMENTACAO_Clicked" />
+            <Button x:Name="INVENTARIO"   Text="INVENTÁRIO"  HeightRequest="60" Image="drawable/inventario.png" Clicked="INVENTARIO_Clicked" />
+            <Button x:Name="ATENDIMENTO"  Text="ATENDIMENTO" HeightRequest="60" Image="drawable/atendimento2.png" Clicked="ATENDIMENTO_Clicked"  />
+            <Button x:Name="MATERIALDETALHE" Text="CONSULTAR MATERIAL" HeightRequest="60" Image="drawable/consultar.png"  Clicked="MATERIALDETALHE_Clicked"  />
+            <Button x:Name="SAIR" Text="TROCAR OPERADOR" HeightRequest="60"  Image="drawable/operadores.png"  Clicked="SAIR_Clicked"  />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

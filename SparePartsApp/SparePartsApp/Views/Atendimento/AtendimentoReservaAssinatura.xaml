@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SparePartsApp.Views.Atendimento.AtendimentoReservaAssinatura"        
+             xmlns:signature="clr-namespace:SignaturePad.Forms;assembly=SignaturePad.Forms"
+             Title="ATENDIMENTO" >
+    <ContentPage.Content>
+        <StackLayout  Padding="10" >
+            <Entry x:Name="txtNomeCompleto" Placeholder="Nome Completo" />
+            <signature:SignaturePadView x:Name="padView"
+                                HeightRequest="300" 
+                                BackgroundColor="White"
+                                CaptionText="" CaptionTextColor="Black"
+                                ClearText="Apagar" ClearTextColor="Red"  
+                                PromptText="Assinatura" PromptTextColor="LightGray" 
+                                SignatureLineColor="LightGray" StrokeColor="Black" StrokeWidth="1" />            
+            <Button x:Name="btnOK" Clicked="OnGetImage" Text="OK"  HeightRequest="50" /> <!--Style="padding:10px"-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

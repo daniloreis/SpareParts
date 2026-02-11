@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SparePartsApp.Views.ArmazenagemDetalhe"
+             xmlns:components="clr-namespace:SparePartsApp.Components"
+             Title="ARMAZENAGEM">
+    <ContentPage.Content >
+        <StackLayout Padding="10">
+            <Grid RowSpacing="0" ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="CÓDIGO:" VerticalOptions="Center" FontAttributes="Bold"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="{Binding CodMaterial}" VerticalOptions="Center"/>
+                
+                <Label Grid.Row="1" Grid.Column="0" Text="NOME:" VerticalOptions="Center" FontAttributes="Bold"/>
+                <Label Grid.Row="1" Grid.Column="1" Text="{Binding Nome}" VerticalOptions="Center"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Text="LOTE:" VerticalOptions="Center" FontAttributes="Bold"/>
+                <Label Grid.Row="2" Grid.Column="1" Text="{Binding NumeroLote}" VerticalOptions="Center"/>
+
+                <Label Grid.Row="3" Grid.Column="0" Text="QTD RECEBIDA:" VerticalOptions="Center" FontAttributes="Bold"/>
+                <Label Grid.Row="3" Grid.Column="1" Text="{Binding QuantidadeString }" VerticalOptions="Center" HorizontalOptions="Start"/>
+                <Label Grid.Row="3" Grid.Column="1" Text="{Binding UnidadeMedida}" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+                <Label Grid.Row="4" Grid.Column="0" Text="DEP. DESTINO:" VerticalOptions="Center" FontAttributes="Bold"/>
+                <Label Grid.Row="4" Grid.Column="1" Text="{Binding DepositoDestino}" VerticalOptions="Center"  HorizontalOptions="Start"/>
+
+                <Label Grid.Row="5" Grid.Column="0" Text="ARMAZENAR EM:" VerticalOptions="Center" FontAttributes="Bold"/>
+                <components:BarCodeEntry Grid.Row="5" Grid.Column="1" x:Name="txtPosicaoDeposito" Text="" TextChanged="txtPosicaoDeposito_TextChanged" Placeholder="{Binding PosicaoDeposito}"/>
+
+                <Label Grid.Row="6" Grid.Column="0" Text="ESTOQUE FÍSICO:"  VerticalOptions="Center" FontAttributes="Bold"/>
+                <components:NumericEntry Grid.Row="6" Grid.Column="1" Text="{Binding QuantidadeEstoqueFisico}" x:Name="txtQuantidadeEstoqueFisico" 
+                       Keyboard="Numeric" VerticalOptions="Center"  WidthRequest="70"  HorizontalOptions="StartAndExpand" />
+                <Label Grid.Row="6" Grid.Column="1" Text="{Binding UnidadeMedida}" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+                <Label Grid.Row="7" Grid.Column="0" Text="Pendente FISPQ:" VerticalOptions="Center" HorizontalOptions="Start" FontAttributes="Bold" IsVisible="{Binding ExigeFispq}"/>
+                <components:CheckBox Grid.Row="7" Grid.Column="1"  IsChecked="{Binding FispqPendente}" Type="Check"  HorizontalOptions="Start" IsVisible="{Binding ExigeFispq}"/>
+            </Grid>
+            <Button x:Name="btnArmazenar"  Text="ARMAZENAR"  Clicked="btnArmazenar_Clicked" VerticalOptions="End" IsEnabled="False"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

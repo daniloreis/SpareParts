@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SparePartsApp.Views.AtendimentoAbertura"
+             Title="ATENDIMENTO">
+    <ContentPage.Content>       
+            <StackLayout VerticalOptions="Center" Padding="20" >                
+                <Button x:Name="btnComReserva"  Text="RESERVA"  Clicked="btnComReserva_Clicked"   HeightRequest="60"/>
+
+                <Button x:Name="btnPorTransferencia"  Text="TRANSFERÊNCIA"  Clicked="btnPorTransferencia_Clicked"   HeightRequest="60"/>
+
+                <Button x:Name="btnCompraDireta"  Text="COMPRA DIRETA"  Clicked="btnCompraDireta_Clicked"   HeightRequest="60"/>
+
+                <Button x:Name="btnVisitante"  Text="ACOMPANHAMENTO"  Clicked="btnVisitante_Clicked"    HeightRequest="60"/>
+            </StackLayout>    
+    </ContentPage.Content>
+</ContentPage>

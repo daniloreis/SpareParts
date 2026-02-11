@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SparePartsApp.Views.RecebimentoLista"
+              Title="RECEBIMENTO"             
+             x:Name="BrowseRecebimentoLista"             
+             xmlns:components="clr-namespace:SparePartsApp.Components"  >
+    <ContentPage.Content>
+        <StackLayout >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="MATERIAL" FontAttributes="Bold"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="QTD" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                <Label Grid.Row="0" Grid.Column="2" Text="UM" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                <Label Grid.Row="0" Grid.Column="3" Text="FOTO" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+            </Grid>
+            <ListView x:Name="MaterialsListView" ItemsSource="{Binding Materiais}"  ItemSelected="OnMaterialSelected" RowHeight="75"  SeparatorColor="Black">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="45" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding CodMaterial}"  FontSize="Small" HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
+                                <Label Grid.Row="0" Grid.Column="0"  Text="EXIGE FISPQ" IsVisible="{Binding ExigeFispq}" TextColor="Red" FontAttributes="Bold" HorizontalOptions="End" LineBreakMode="NoWrap" VerticalOptions="Start"/>
+                                <Label Grid.Row="0" Grid.Column="0"  Text="EXIGE ATIVOS" IsVisible="{Binding RequerPlacaAtivo}" TextColor="Green" FontAttributes="Bold" HorizontalOptions="End" LineBreakMode="NoWrap" VerticalOptions="Center"/>
+                                <Label Grid.Row="0" Grid.Column="0"  Text="EXIGE LOTES  " IsVisible="{Binding ExigeValidade}" TextColor="Blue" FontAttributes="Bold" HorizontalOptions="End" LineBreakMode="NoWrap" VerticalOptions="End"/>
+                                
+
+                                <Entry  Grid.Row="0" Grid.Column="1" Text="{Binding QuantidadeEstoqueFisico }" FontSize="Small" Keyboard="Numeric" IsEnabled="{Binding NaoExigeValidade}"  VerticalOptions="Center" HorizontalTextAlignment="Center" />
+
+                                <Label  Grid.Row="0" Grid.Column="2" Text="{Binding UnidadeMedida}" VerticalOptions="Center" HorizontalTextAlignment="Center"  />
+                                <Button Grid.Row="0" Grid.Column="3" x:Name="btnFoto" Image="{Binding ImagemBotaoFoto}" Clicked="btnFoto_Clicked" VerticalOptions="Center" BackgroundColor="Transparent" />
+
+                                <Label  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Nome}" HorizontalOptions="StartAndExpand" VerticalOptions="Center" TextColor="{Binding CorTexto}" LineBreakMode="WordWrap"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button x:Name="btnEntradaMercadoria" Text="CONFIRMAR ENTRADA DE MATERIAIS" Clicked="btnEntradaMercadoria_Clicked" VerticalOptions="End"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

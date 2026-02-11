@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Components="clr-namespace:SparePartsApp.Components" 
+             x:Class="SparePartsApp.Views.Atendimento.AtendimentoVisitante"
+             Title="ATENDIMENTO">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Selecione um motivo abaixo:"/>
+            <Picker x:Name="pkrMotivo" BackgroundColor="LightGray" SelectedIndexChanged="PkrMotivo_SelectedIndexChanged">
+                <Picker.Items>
+                    <x:String>Verificar material no físico</x:String>
+                    <x:String>Acesso às áreas anexas</x:String>
+                    <x:String>Outro</x:String>
+                </Picker.Items>
+            </Picker>
+            <Components:BarCodeEntry Placeholder="Cód Material" x:Name="txtCodMaterial"/>
+            <Button x:Name="btnFinalizar" Text="FINALIZAR ACOMPANHAMENTO" Clicked="BtnFinalizar_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
