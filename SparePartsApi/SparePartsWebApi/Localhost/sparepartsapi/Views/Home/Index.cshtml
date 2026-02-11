@@ -1,0 +1,24 @@
+﻿<div class="jumbotron">
+
+</div>
+<div class="row">  
+
+
+    @using (Html.BeginForm("PostUserImage", "Values", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-inline">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label>Selecione o arquivo para importação: </label>
+                    <input type="file" name="FileUpload" id="fileUpload" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" value="Importar" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+</div>

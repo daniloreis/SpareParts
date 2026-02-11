@@ -1,0 +1,50 @@
+﻿<#@ template language="C#" debug="True" hostspecific="True" #>
+<#@ import namespace="System.IO"#>
+<#
+foreach(System.Data.DataRow row in Rows)
+{   
+	string rowName = row["TABLE_NAME"].ToString();
+	string tableName = rowName.ToUpper()[0] + rowName.ToLower().Substring(1,rowName.Length-1);
+	command.CommandText = selectQuery.Replace("@tableName",row["TABLE_NAME"].ToString());
+    ad.FillSchema(ds, SchemaType.Mapped, row["TABLE_NAME"].ToString());
+	#>
+
+@model IEnumerable<Domain.<#=tableName#>>
+
+<h1><#=tableName#></h1>
+
+
+<table class="table">
+	<tr>
+		<th>@Html.ActionLink("Incluir", "Crud", new { }, new { @class = "btn btn-primary" })</th>
+	<#foreach(DataColumn dc in ds.Tables[tableName].Columns)
+    {#>  
+		<th>
+			<#=dc.ColumnName#>
+		</th>
+    <#}#>   
+	</tr>
+
+	@foreach (var item in Model)
+	{		
+<tr> 
+<td>
+	 @Html.ActionLink("Alterar", "Crud", new { id = item.Id }, new { @class = "btn btn-default" })
+			</td>
+	<#foreach(DataColumn dc in ds.Tables[tableName].Columns)
+    {#> 
+		<td>
+			@Html.DisplayFor(model => item.<#=dc.ColumnName#>)
+		</td>
+    <#}#>  
+		</tr>
+	}
+
+</table> 
+
+<#
+System.IO.Directory.CreateDirectory(T4TemplatePath+@"\..\Views\"+tableName);
+ File.WriteAllText(T4TemplatePath+@"\..\Views\\"+tableName+"\\List.cshtml", this.GenerationEnvironment.ToString(),System.Text.Encoding.UTF8);
+ this.GenerationEnvironment.Remove(0, this.GenerationEnvironment.Length);
+}#>
+   

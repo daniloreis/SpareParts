@@ -1,0 +1,45 @@
+﻿
+@model Domain.PosicaoDeposito
+
+<h1>Endereço</h1>
+
+@using (Html.BeginForm("Save", "Posicaodeposito"))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    <div class="form-group">
+        <div class="col-md-4">
+            <label>Deposito: </label>
+            * @Html.ValidationMessageFor(model => model.Deposito, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.Deposito, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-4">
+            <label>Endereço: </label>
+            * @Html.ValidationMessageFor(model => model.Localizacao, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.Localizacao, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-4">
+            <label>Area: </label>
+            * @Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.Area, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-4">
+            @Html.ActionLink("Voltar", "List", new { }, new { @class = "btn btn-default" })
+            @if (Model.Id.HasValue)
+            {@Html.ActionLink("Excluir", "Delete", new { id = Model.Id }, new { @class = "btn btn-warning", onclick = "return confirm('Confirma exclusão?');" })}
+            <input type="submit" value="Salvar" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
+

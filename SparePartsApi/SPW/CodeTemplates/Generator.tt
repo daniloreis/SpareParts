@@ -1,0 +1,9 @@
+﻿<#@ include file="Connection.tt" #>
+//<#@ include file="Menu.tt" #>
+<#@ include file="Entity.tt" #> 
+<#@ include file="Service.tt" #> 
+<#@ include file="Repository.tt" #> 
+//<#@ include file="Controller.tt" #> 
+<#@ include file="CrudView.tt" #> 
+<#@ include file="ListView.tt" #> 
+

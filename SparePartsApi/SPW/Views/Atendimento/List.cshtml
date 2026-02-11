@@ -1,0 +1,197 @@
+﻿@model  SPW.Models.AtendimentoViewModel
+@using Domain
+
+<h1>ATENDIMENTO</h1>
+<hr />
+<h3>Pesquisa:</h3>
+@using (Html.BeginForm("Search", "Atendimento"))
+{<div class="form-inline">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-12">
+                <label>Código Material: </label>
+                @Html.Editor("Filtro.CodMaterial", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <label>Material: </label>
+                @Html.Editor("Filtro.Nome", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <label>Reserva: </label>
+                @Html.Editor("Filtro.NumeroDocumento", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <label>Data Início: </label>
+                @Html.Editor("Filtro.DataHoraInicio", new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <label>Data Fim: </label>
+                @Html.Editor("Filtro.DataHoraFim", new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <label>Operador: </label>
+                @Html.Editor("Filtro.Usuario", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <label>Tipo: </label>
+                @Html.DropDownListFor(model => model.Filtro.TipoAtendimento, new SelectList(new[] { "", TipoAtendimento.COMPRADIRETA, TipoAtendimento.RESERVA, TipoAtendimento.TRANSFERENCIA }), new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <label>Situação: </label>
+                @Html.DropDownListFor(model => model.Filtro.Situacao, new SelectList(new[] { "", Situacao.PENDENTE, Situacao.CONCLUIDO }), new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-4" style="vertical-align: bottom;">
+                <input type="submit" value="Filtrar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+<br />
+<br />
+<a class="btn btn-primary" id="lnkPendentes" href="http://@Request.Url.Authority/api/Atendimento/AtenderPendentes">Reenviar pendentes para o SAP</a>
+<br />
+<br />
+<table class="table-striped">
+    <tr>
+        <th>
+            Código
+        </th>
+        <th>
+            Material
+        </th>
+        <th>
+            Lote
+        </th>
+        <th>
+            Reserva
+        </th>
+        <th>
+            Qtd SAP
+        </th>
+        <th>
+            Qtd Est. Físico
+        </th>
+        <th>
+            Diferença
+        </th>
+        <th>
+            Qtd Atendida
+        </th>
+        <th>
+            UMB
+        </th>
+        <th>
+            Início
+        </th>
+        <th>
+            Fim
+        </th>
+        <th>
+            Operador
+        </th>
+        <th>
+            Usuário atendido
+        </th>
+        <th>
+            Tipo
+        </th>
+        <th>
+            Assinatura
+        </th>
+        <th>
+            Status SAP
+        </th>
+        <th>
+            Retorno SAP
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Materiais)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(model => item.CodMaterial)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.NumeroLote)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.NumeroReserva)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.QuantidadeEstoqueSAP)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.QuantidadeEstoqueFisico)
+        </td>
+        <td style="@(item.QuantidadeDivergencia != 0 ? "color:red" : "")">
+            @Html.DisplayFor(model => item.QuantidadeDivergencia)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.QuantidadeRetirada)
+        </td>
+
+        <td>
+            @Html.DisplayFor(model => item.UnidadeMedida)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.DataHoraInicio)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.DataHoraFim)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.Usuario)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.UsuarioAtendido)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.TipoAtendimento)
+        </td>
+        <td>
+            @if (!string.IsNullOrWhiteSpace(item.ImagemAssinatura))
+            {
+                <a target="_blank" href="@Path.Combine("../../api/Uploads/", item.ImagemAssinatura)">
+                    ver
+                </a>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.Situacao)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.RetornoSap)
+        </td>
+    </tr>
+    }
+</table>
+<script>
+    $(function () {
+        $("#lnkPendentes").click(function () {
+            $("#lnkPendentes").attr('disabled', 'disabled');
+            $.get(this.href, function (result) { alert('Procedimento finalizado com sucesso!'); location.reload(); });
+            return false;
+        });
+    }
+</script>

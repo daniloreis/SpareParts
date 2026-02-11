@@ -1,0 +1,37 @@
+﻿
+<#@ template language="C#" debug="True" hostspecific="True" #>
+<#@ import namespace="System.IO"#>
+<#
+foreach(System.Data.DataRow row in Rows)
+{   
+	string rowName = row["TABLE_NAME"].ToString();
+	string tableName = rowName.ToUpper()[0] + rowName.ToLower().Substring(1,rowName.Length-1);
+#>
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
+namespace UserInerface.MVC.ViewModels
+{
+    public class <#=tableName  #>ViewModel
+    {
+        public Int32? Id { get; set; }
+  <#
+        command.CommandText = selectQuery.Replace("@tableName",row["TABLE_NAME"].ToString());
+        ad.FillSchema(ds, SchemaType.Mapped, row["TABLE_NAME"].ToString());
+
+        foreach (DataColumn dc in ds.Tables[tableName].Columns)
+        {
+			if (!dc.AllowDBNull)
+                WriteLine(@"[Required(ErrorMessage =""Obrigatório"")]");
+         #> 
+        public <#= dc.DataType.Name  #><#if (!dc.DataType.Name.Equals("String") ) Write("?"); #> <#= dc.ColumnName #> { get; set; }
+       <#}#>	
+    }
+}  
+<#
+ File.WriteAllText(T4TemplatePath+@"\Codigo\"+tableName+"ViewModel.cs", this.GenerationEnvironment.ToString(),System.Text.Encoding.UTF8);
+ this.GenerationEnvironment.Remove(0, this.GenerationEnvironment.Length);
+}#>
+   

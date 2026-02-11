@@ -1,0 +1,25 @@
+﻿@model Domain.ListaRecebimento
+
+
+@Html.BeginForm("Index", "Home")
+@{
+    @foreach (var material in Model.Materiais)
+    {
+        @Html.Display("Quantidade contada")
+        @Html.EditorForModel(material.QuantidadeEstoqueFisico)
+
+        @Html.Display("Ponto de descarga")
+        @Html.EditorForModel(material.PosicaoDeposito)
+
+        @if (material.TemLote)
+        {
+            @Html.Display("Número do lote")
+            @Html.EditorForModel(material.NumeroLote)
+
+            @Html.Display("Validade")
+            @Html.EditorForModel(material.Validade)
+        }
+    }
+
+    <input type="submit" value="EFETUAR ENTRADA (MIGO)" />
+}

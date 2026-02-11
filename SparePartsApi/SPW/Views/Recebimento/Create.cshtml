@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "Recebimento";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+@model Domain.ListaRecebimento
+
+<h1>RECEBIMENTO</h1>
+
+<hr />
+
+@using (Html.BeginForm("Index", "Recebimento", FormMethod.Post))
+{
+    <div class="form-horizontal">
+        <div class="col-md-4" style="vertical-align: bottom;width:200px">
+            @Html.Editor("CodLista", new { htmlAttributes = new { @class = "form-control", placeholder = "Número da VL" } })
+        </div>
+        <div class="col-md-4" style="vertical-align: bottom;">
+            <input type="submit" value="CARREGAR VL" class="btn btn-primary" />
+        </div>
+    </div>
+}
+<br />
+@using (Html.BeginForm("Post", "Recebimento", FormMethod.Post))
+{
+
+
+    <input type="hidden" name="codLista" value="@Model.CodLista" />
+    <br />
+    <br />
+    <div style="color:red">@ViewBag.Message</div>
+    <br /><br />
+
+    <table class="table">
+        <tr>
+            <th>
+                Código Material
+            </th>
+            <th>
+                Nome
+            </th>
+            <th>
+                VL
+            </th>
+            <th>
+                Quantidade
+            </th>
+            <th>
+                UM
+            </th>
+            <th>
+                Lote
+            </th>
+            <th>
+                Validade
+            </th>
+        </tr>
+
+        @for (int i = 0; i < Model.Materiais.Count(); i++)
+        {
+            var item = Model.Materiais[i];
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.CodMaterial)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.CodLista)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Quantidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.UnidadeMedida)
+                </td>
+                <td>
+                    @if (item.TemLote && !string.IsNullOrWhiteSpace(item.UnidadeTempo))
+                    {
+                        @Html.TextBoxFor(model => model.Materiais[i].NumeroLote)
+                    }
+                </td>
+                <td>
+                    @if (item.TemLote && !string.IsNullOrWhiteSpace(item.UnidadeTempo))
+                    {
+                        @Html.TextBoxFor(model => model.Materiais[i].Validade, new { @type = "date" })
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <div class="form-group">
+        <div class="col-md-4" style="vertical-align: bottom;">
+            <input type="submit" value="EFETIVAR MIGO" class="btn btn-primary" />
+        </div>
+    </div>
+}

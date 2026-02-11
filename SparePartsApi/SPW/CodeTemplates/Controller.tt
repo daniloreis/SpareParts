@@ -1,0 +1,102 @@
+﻿<#@ template language="C#" debug="True" hostspecific="True" #>
+<#@ import namespace="System.IO"#>
+<#
+foreach(System.Data.DataRow row in Rows)
+{    
+	string rowName = row["TABLE_NAME"].ToString();
+	string tableName = rowName.ToUpper()[0] + rowName.ToLower().Substring(1,rowName.Length-1);
+#>
+using Domain;
+using System;
+using System.Web.Mvc;
+using Application;
+
+public class <#=tableName#>Controller : Controller
+	{
+		private <#=tableName#>Service service;
+
+		public <#=tableName#>Controller(<#=tableName#>Service service)
+		{
+			this.service = service;
+		}
+
+		public ActionResult List()
+		{
+			try
+			{
+				var models = service.FindAll();
+
+				return View(models);
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
+		public ActionResult Crud(int? id)
+		{
+			try
+			{
+			var model = new <#=tableName#>();
+
+			if (id.HasValue)
+			{
+				model = service.FindById(id.Value);
+			}
+
+			return View(model);
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult Save(<#=tableName#> model)
+		{
+			try
+			{
+				if (ModelState.IsValid)
+				{
+					service.Save(model);
+
+					return RedirectToAction("List");
+				 }
+	
+			return View("Crud", model);
+
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
+		public ActionResult Delete(int id)
+		{
+			try
+			{
+				var model = service.FindById(id);
+
+				if (model != null)
+					service.Remove(model);
+
+				return RedirectToAction("List");
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		} 
+	}
+
+	
+
+<#
+ File.WriteAllText(T4TemplatePath+@"\..\Controllers\"+tableName+"Controller.cs", this.GenerationEnvironment.ToString(),System.Text.Encoding.UTF8);
+ this.GenerationEnvironment.Remove(0, this.GenerationEnvironment.Length);
+}#>
+   

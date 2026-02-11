@@ -1,0 +1,22 @@
+﻿<#@ template language="C#" debug="True" hostspecific="True" #>
+<#@ output extension=".cs" #>
+<#@ assembly name="System.Data" #>
+<#@ assembly name="System.xml" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.IO"#>
+<#
+string connectionString = "Server=SRV123-HOMOLOGA;Database=bd_almoxarifado;uid=usr_aplic;pwd=y2k2000;";
+SqlConnection conn = new SqlConnection(connectionString);
+conn.Open();
+System.Data.DataTable schema = conn.GetSchema("TABLES");
+//DataRowCollection Rows = schema.Rows; //todas as tabelas
+DataRow[] Rows = schema.Select("TABLE_NAME IN ('')"); //not in sysdiagrams, __migrationhistory
+string selectQuery = "select * from @tableName";
+SqlCommand command = new SqlCommand(selectQuery,conn);
+SqlDataAdapter ad = new SqlDataAdapter(command);
+System.Data.DataSet ds = new DataSet();
+string T4TemplatePath = Path.GetDirectoryName(Host.TemplateFile);
+#>
+

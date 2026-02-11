@@ -1,0 +1,14 @@
+﻿CT~~CD,~CC^~CT~
+^XA~TA000~JSN^LT0^MNW^MTD^PON^PMN^LH0,0^JMA^PR4,4~SD25^JUS^LRN^CI0^XZ
+~DG000.GRF,22400,100,
+,::J0oRF,I0oTF0,H03FoSFC,H0oVF,01FoUF80:03FoUFC0:07FF0oQ0HFE007FC0oQ03FE007F80oQ01FE0:0FF0oR01FE0::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::07F80oQ01FE0:07FC0oQ03FE007FoUFE003FoUFC0:01FoUF80:H0oVF,H03FoSFC,I0oTF0,,::::::::::::::::::::::::::^XA
+^MMT
+^PW799
+^LL0200
+^LS0
+^FT0,224^XG000.GRF,1,1^FS
+^BY5,3,80^FT65,116^BCN,,Y,N
+^FD>:%barcode%^FS
+^FT634,184^A0N,14,14^FH\^FD@datahora^FS
+^PQ1,0,1,Y^XZ
+^XA^ID000.GRF^FS^XZ

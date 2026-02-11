@@ -1,0 +1,58 @@
+﻿<#@ template language="C#" debug="True" hostspecific="True" #>
+<#@ import namespace="System.IO"#>
+<#
+foreach(System.Data.DataRow row in Rows)
+{   
+	string rowName = row["TABLE_NAME"].ToString();
+	string tableName = rowName.ToUpper()[0] + rowName.ToLower().Substring(1,rowName.Length-1);
+	command.CommandText = selectQuery.Replace("@tableName",row["TABLE_NAME"].ToString());
+    ad.FillSchema(ds, SchemaType.Mapped, row["TABLE_NAME"].ToString());
+	#>
+ 
+ @model Domain.<#=tableName#>
+
+<h1><#=tableName#></h1>
+
+@using (Html.BeginForm("Save", "<#=tableName#>"))
+{
+	@Html.AntiForgeryToken()
+
+	<div class="form-horizontal">
+		<hr />
+		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+		<div class="form-group">
+			<div class="col-md-12">
+				<label>Id: </label>
+				@Html.DisplayFor(model => model.Id)
+				@Html.HiddenFor(model => model.Id)
+			</div>
+		</div>  
+    <#foreach (DataColumn dc in ds.Tables[tableName].Columns) {
+            if (!dc.Unique){ #>
+		<div class="form-group">
+			<div class="col-md-12">
+				<label><#=dc.ColumnName#>: </label>
+				<#if (!dc.AllowDBNull && !dc.DataType.Name.ToLower().Equals("bit")){#>* @Html.ValidationMessageFor(model => model.<#=dc.ColumnName#>, "", new { @class = "text-danger" })<#}#>
+				<#WriteLine(" ");#>
+				@Html.EditorFor(model => model.<#=dc.ColumnName#>, new { htmlAttributes = new { @class = "form-control" } })
+			</div>
+		</div>  
+	<#}}#>   
+
+		<div class="form-group">
+			<div class="col-md-12">
+				@Html.ActionLink("Voltar", "List", new { }, new { @class = "btn btn-default" })
+				@if (Model.Id.HasValue)
+				{ @Html.ActionLink("Excluir", "Delete", new { id = Model.Id }, new { @class = "btn btn-warning" , onclick = "return confirm('Confirma exclusão?');"}) }
+				<input type="submit" value="Salvar" class="btn btn-primary" />
+			</div>
+		</div>
+	</div>
+} 
+
+<#
+System.IO.Directory.CreateDirectory(T4TemplatePath+@"\..\Views\"+tableName);
+ File.WriteAllText(T4TemplatePath+@"\..\Views\"+tableName+"\\Crud.cshtml", this.GenerationEnvironment.ToString(),System.Text.Encoding.UTF8);
+ this.GenerationEnvironment.Remove(0, this.GenerationEnvironment.Length);
+}#>
+   

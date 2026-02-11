@@ -1,0 +1,104 @@
+﻿@model  SPW.Models.AtendimentoViewModel
+
+<h1>ATENDIMENTO</h1>
+<hr />
+<h3>Pesquisa:</h3>
+@using (Html.BeginForm("Search", "Acompanhamento"))
+{<div class="form-inline">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <div class="col-md-12">
+            <label>Código Material: </label>
+            @Html.Editor("Filtro.CodMaterial", new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12">
+            <label>Data Início: </label>
+            @Html.Editor("Filtro.DataHoraInicio", new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12">
+            <label>Data Fim: </label>
+            @Html.Editor("Filtro.DataHoraFim", new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12">
+            <label>Operador: </label>
+            @Html.Editor("Filtro.Usuario", new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12">
+            <label>Usuário Atendido: </label>
+            @Html.Editor("Filtro.UsuarioAtendido", new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-4" style="vertical-align: bottom;">
+            <input type="submit" value="Filtrar" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
+<br />
+<table class="table-striped">
+    <tr>
+        <th>
+            Cód. Material
+        </th>
+        <th>
+            Início
+        </th>
+        <th>
+            Fim
+        </th>
+        <th>
+            Operador
+        </th>
+        <th>
+            Usuário Atendido
+        </th>
+        <th>
+            Motivo
+        </th>
+        <th>
+            Assinatura
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Acompanhamentos)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.CodMaterial)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.DataHoraInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.DataHoraFim)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.UsuarioAtendido)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.MotivoAcompanhamento)
+            </td>
+            <td>
+                @if (!string.IsNullOrWhiteSpace(item.ImagemAssinatura))
+                {
+                    <a target="_blank" href="@Path.Combine("../../api/Uploads/", item.ImagemAssinatura)">
+                        ver
+                    </a>
+                }
+            </td>
+        </tr>
+    }
+</table> 

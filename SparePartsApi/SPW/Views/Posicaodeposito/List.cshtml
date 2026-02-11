@@ -1,0 +1,109 @@
+﻿@model SPW.Models.PosicaoDepositoViewModel
+
+<h1>ENDEREÇOS</h1>
+<hr />
+<h3>Importação:</h3>
+
+
+@using (Html.BeginForm("Import", "Posicaodeposito", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-inline">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-12">
+                <label>Selecione o arquivo para importação: </label>
+                <input type="file" name="FileUpload" id="fileUpload" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="submit" value="Importar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<hr />
+<h3>Pesquisa:</h3>
+@using (Html.BeginForm("Search", "Posicaodeposito"))
+{
+    <div class="form-inline">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-12">
+                <label>Depósito: </label>
+                @Html.EditorFor(model => model.Deposito, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <label>Área: </label>
+                @Html.EditorFor(model => model.Area, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-4" style="vertical-align: bottom;">
+                <input type="submit" value="Filtrar" class="btn btn-primary" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-4" style="vertical-align: bottom;">
+                @Html.ActionLink("Imprimir todas filtradas", "Print", new { deposito = Model.Deposito, area = Model.Area }, new { @class = "btn btn-primary lnkPrint", target = "_blank" })
+            </div>
+        </div>
+    </div>
+}
+<br />
+<h3>Lista:</h3>
+<table class="table-striped table">
+    <thead>
+        <tr>
+            <th>@Html.ActionLink("Incluir", "Crud", new { }, new { @class = "btn btn-primary" })</th>
+
+            <th>
+                Depósito
+            </th>
+            <th>
+                Endereço
+            </th>
+            <th>
+                Área
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr id="itemContainer">
+                <td width="170px;">
+                    @Html.ActionLink("Alterar", "Crud", new { id = item.Id }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Imprimir", "Print", new { deposito = item.Deposito, localizacao = item.Localizacao }, new { @class = "btn btn-default lnkPrint", target = "_blank" })
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => item.Deposito)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => item.Localizacao)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => item.Area)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+        //$(document).ready(function () {
+        //    $(".lnkPrint").click(function () {
+        //        $(this).attr('disabled', 'disabled');
+        //        $.get(this.href, function (result) {
+        //            alert('Dados enviados para impressão!');
+        //        });
+        //    });
+        //});
+</script>

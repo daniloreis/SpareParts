@@ -1,0 +1,59 @@
+﻿@model  SPW.Models.EmailEnviadoViewModel
+
+<h1>Emails enviados</h1>
+@*@Html.DisplayForModel(Model.Mensagem)*@
+<a class="btn btn-primary" id="lnkPendentes" target="_self" href="http://@Request.Url.Authority/api/email/ConsumirFilaEmail">Reenviar emails pendentes</a>
+<br />
+<br />
+<table class="table">
+    <tr>
+        @*<th>
+                Mensagem
+            </th>*@
+        <th>
+            Assunto
+        </th>
+        <th>
+            Destinatário
+        </th>
+        <th>
+            Criado em:
+        </th>
+
+        <th>
+            Enviado em:
+        </th>
+
+        <th>
+            Erro:
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Emails)
+    {
+        <tr>
+            @*<td>
+                    @Html.Raw(item.Mensagem)
+                </td>*@
+            <td>
+                @Html.DisplayFor(model => item.Assunto)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Destinatario)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.DataHoraCriado)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => item.DataHoraEnviado)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => item.Erro)
+            </td>
+        </tr>
+    }
+
+</table>
+

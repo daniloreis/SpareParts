@@ -1,0 +1,31 @@
+﻿<#@ template language="C#" debug="True" hostspecific="True" #>
+<#@ import namespace="System.IO"#>
+<#
+foreach(System.Data.DataRow row in Rows)
+{    
+	string rowName = row["TABLE_NAME"].ToString();
+	string tableName = rowName.ToUpper()[0] + rowName.ToLower().Substring(1,rowName.Length-1);
+#>
+using Domain;
+using Infrastructure;
+
+namespace Application
+{
+    public class  <#=tableName  #>Service : ServiceBase<<#=tableName  #>> 
+    {
+        private readonly  <#=tableName  #>Repository  repository;
+
+        public <#=tableName  #>Service(<#=tableName  #>Repository repository) : base(repository)
+        {
+            this.repository = repository;
+        }
+ 
+    }
+}
+
+
+<#
+ File.WriteAllText(T4TemplatePath+@"\..\..\Application\Services\"+tableName+"Service.cs", this.GenerationEnvironment.ToString(),System.Text.Encoding.UTF8);
+ this.GenerationEnvironment.Remove(0, this.GenerationEnvironment.Length);
+}#>
+   

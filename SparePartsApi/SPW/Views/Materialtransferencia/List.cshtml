@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Domain.MaterialAtendimentoTransferencia>
+
+<h1>TRANSFERÊNCIA</h1>
+<br /><br />
+
+<table class="table-striped">
+
+    @Html.Partial("Crud", new Domain.MaterialAtendimentoTransferencia())
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td style="text-align:center">
+                @Html.DisplayFor(model => item.CodMaterial)
+            </td>
+            <td>
+                @Html.ActionLink("Excluir", "Delete", new { id = item.Id }, new { @class = "btn btn-warning", onclick = "return confirm('Confirma exclusão?');" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+

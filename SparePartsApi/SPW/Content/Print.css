@@ -1,0 +1,54 @@
+﻿.etiqueta {
+    width: 9.5cm;
+    height: 2cm;
+    text-align: center;
+    padding: 10px;
+    margin: 5px;
+}
+
+.box {
+    width: 9.5cm;
+    height: 2cm;
+    position: absolute;
+    border: dotted;
+    padding: 10px;
+    margin: 5px;
+}
+
+@media print {
+    * {
+        visibility: hidden;
+    }
+
+    header, footer, nav, footer, video, audio, object, embed, head, top {
+        display: none;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        line-height: 1.4em;
+        width: 21mm;
+        height: 29mm;
+    }
+
+    .etiqueta {
+        visibility: visible !important;
+        page-break-after: always;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    img {
+        visibility: visible !important;
+        max-width: 100%;
+    }
+
+    page {
+        width: 21mm;
+        height: 29mm;
+        margin: 0;
+    }
+}

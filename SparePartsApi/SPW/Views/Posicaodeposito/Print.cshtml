@@ -1,0 +1,23 @@
+﻿@model IEnumerable<SPW.Models.PosicaoDepositoViewModel>
+@{
+    Layout = null;
+}
+<link href="~/Content/Print.css" rel="stylesheet" />
+
+
+<ul class="tabela">
+    @foreach (var item in Model)
+    {
+        <li style="list-style-type:none;border:dotted;width:400px;height:90px;">
+            <div class="etiqueta">
+                <img src="@String.Format("data:image/png;base64,{0}", item.ImagemCodBarra)" />
+                <br />
+                @item.Localizacao-@item.Deposito
+            </div>
+
+        </li>
+    }
+</ul>
+<script type="text/javascript">
+    window.print();
+</script>

@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SPW</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/menu.css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")    
+</head>
+<body>
+    <div class='container-fluid '>
+        <div class='row'>
+            <div class='col-sm-2 no-print'>
+                <div class='main-nav'>
+                    <div class='navbar navbar-inverse'>
+                        <div class='navbar-header'>
+                            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
+                                <span class='icon-bar'></span>
+                                <span class='icon-bar'></span>
+                                <span class='icon-bar'></span>
+                            </button>
+                            <div class='navbar-brand'>SPA - @User.Identity.Name @Html.ActionLink("(sair)", "Logout", "Home")</div>
+                        </div>
+                        <div class='clearfix'></div>
+                        <div class='navbar-collapse collapse'>
+                            <ul class='nav navbar-nav'>
+                                @Html.Partial("_Menu")
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-9 body-content '>
+                @RenderBody()
+               @* <script src="~/Scripts/paginathing.js"></script>*@
+                <script type="text/javascript">
+                    $(function () {
+                        $('table td, th').css('border', '1px solid lightgray').css('padding', '5px');
+                        //$('table').paginathing({
+                        //    limitPagination: false,
+                        //    prevNext: true,
+                        //    firstLast: true,
+                        //    prevText: '<',
+                        //    nextText: '>',
+                        //    firstText: '<<',
+                        //    lastText: '>>',
+                        //    containerClass: 'pagination-container',
+                        //    ulClass: 'pagination',
+                        //    liClass: 'page',
+                        //    activeClass: 'active',
+                        //    disabledClass: 'disabled',
+                        //    insertAfter: null
+                        //});
+                        //$('.pagination-container').css('width', '200px');
+                    });
+                </script>
+            </div>
+        </div>
+        <footer>
+            <p>&copy; @DateTime.Now.Year - SPW</p>
+        </footer>
+    </div>
+    @*@RenderSection("scripts", required: false)*@
+</body>
+</html>

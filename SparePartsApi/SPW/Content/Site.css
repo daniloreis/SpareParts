@@ -1,0 +1,25 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.body-content {
+    
+}
+
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: #ffffff !important;
+    background-color: #3276b1 !important;
+    border-color: #285e8e !important;
+}
+  
